@@ -23,9 +23,17 @@ namespace ASP.CORE2023._10._28.Pages
                 {
                     searhResult = allCinema.FindByfInf(searchData);
                 }
-                else if(typeSearh == "fDir")
+                else if (typeSearh == "fDir")
                 {
                     searhResult = allCinema.FindByfDir(searchData);
+                }
+                else if(typeSearh == "fStyl")
+                {
+                    searhResult = allCinema.FindByfStyl(searchData);
+                }
+                else if(typeSearh == "fSean")
+                {
+                    searhResult = allCinema.FindByfSean(searchData);
                 }
 
             }

@@ -94,6 +94,46 @@ namespace AllCinemaLib
             }
             return result;
         }
+
+        public List<CinemaModel> FindByfStyl(string searchData)
+        {
+            List<CinemaModel> result = new List<CinemaModel>();
+
+            string sPattern = $"{searchData}(\\w*)";
+
+            foreach (CinemaModel model in self.data)
+            {
+                foreach (string item in model.Style)
+                {
+                    if (Regex.IsMatch(item, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                    {
+                        if (!result.Contains(model))
+                            result.Add(model);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public List<CinemaModel> FindByfSean(string searchData)
+        {
+            List<CinemaModel> result = new List<CinemaModel>();
+
+            string sPattern = $"{searchData}(\\w*)";
+
+            foreach (CinemaModel model in self.data)
+            {
+                foreach (string item in model.Seances)
+                {
+                    if (Regex.IsMatch(item, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                    {
+                        if (!result.Contains(model))
+                            result.Add(model);
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
 
