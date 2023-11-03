@@ -1,15 +1,18 @@
 ﻿using CinemaLib;
-using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Text.Unicode;
+using System.Xml.Linq;
 
 namespace AllCinemaLib
 {
     public class DataContainer
     {
         public List<CinemaModel> data = new List<CinemaModel>();
+
         static DataContainer self = null;
+
         DataContainer() { }
         public static DataContainer Create()
         {
@@ -38,6 +41,58 @@ namespace AllCinemaLib
         {
             string json = File.ReadAllText("JsonDB.json");
             self.data = JsonSerializer.Deserialize<List<CinemaModel>>(json);
+        }
+
+        public List<CinemaModel> FindByFname(string fname)
+        {
+            List<CinemaModel> result = new List<CinemaModel>();
+            
+            string sPattern = $"{fname}(\\w*)";
+
+            foreach (CinemaModel model in self.data)
+            {
+                    if (Regex.IsMatch(model.Name, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                    {
+                        result.Add(model);
+                    }
+            }
+            return result;
+        }
+
+        public List<CinemaModel> FindByfInf(string searchData)
+        {
+            List<CinemaModel> result = new List<CinemaModel>();
+
+            string sPattern = $"{searchData}(\\w*)";
+
+            foreach (CinemaModel model in self.data)
+            {
+                if (Regex.IsMatch(model.Info, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                {
+                    result.Add(model);
+                }
+            }
+            return result;
+        }
+
+        public List<CinemaModel> FindByfDir(string searchData)
+        {
+            List<CinemaModel> result = new List<CinemaModel>();
+
+            string sPattern = $"{searchData}(\\w*)";
+
+            foreach (CinemaModel model in self.data)
+            {
+                foreach (string item in model.Director)
+                {
+                    if (Regex.IsMatch(item, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                    {
+                        if(!result.Contains(model))
+                            result.Add(model);
+                    }
+                }
+            }
+            return result;
         }
     }
 }

@@ -7,7 +7,27 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Кинотеатр</h1>
+    <h1 class="display-4">Киносеансы</h1>
+
+    @*     ВЕРНУТЬ В СЕРЧ *@
+
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="searchFieldType">Опции поиска</label>
+        <select class="form-select" id="searchFieldType">
+            <option selected value="fName">Поиск по названию фильма</option>
+            <option value="fDir">Поиск по режисер</option>
+            <option value="fStyl">Поиск по стилю</option>
+            <option value="fInf">Поиск по краткому описанию</option>
+            <option value="fSean">Поиск по списку сеансов</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <input id="searchField" type="text" class="form-control" placeholder="Например: Гарри Поттер" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="searchClick()">ПОИСК</button>
+    </div>
+    @*     ВЕРНУТЬ В СЕРЧ *@
+
     <table class="table table-hover">
         <thead>
             <tr>
@@ -21,19 +41,19 @@
             int index = 0;
             foreach (CinemaModel i in Model.data.data)
             {
-                        <tr>
-                            <td>
-                                @i.Name
-                            </td>
-                            <td>
-                        @{
+                            <tr>
+                                <td>
+                                    @i.Name
+                                </td>
+                                <td>
+                            @{
                             string s = string.Join(", ", i.Seances);
-                            @s
-                        }
-                            </td>
-                            <td><button name="pos" value="@index" class="btn btn-info" onclick="details(this);false;">Подробнее</button></td>
+                                    @s
+                            }
+                                </td>
+                                <td><button name="pos" value="@index" class="btn btn-info" onclick="details(this);false;">Подробнее</button></td>
 
-                    </tr>
+                        </tr>
                     index++;
                 }
             }
@@ -41,20 +61,23 @@
     </table>
 </div>
 
-@{
-    Model.data.Save();
-
-    
-   
-}
-
-
 <script>
     function details(item) {
         location.href = "/Details?pos=" + item.value;
     }
+
+    function searchClick() {
+
+        ////searchFieldType.value --- тип поиска
+        ////searchField.value ---- поле поиска
+        ///window.alert();
+        if (searchField.value != null && searchField.value.length > 1) {
+            location.href = "/Search?typeSearh=" + searchFieldType.value + "&searchData=" + searchField.value;
+        }
+        else {
+            window.alert("Слишком короткий поисковый запрос")
+        }
+    }
 </script>
-
-
 
 

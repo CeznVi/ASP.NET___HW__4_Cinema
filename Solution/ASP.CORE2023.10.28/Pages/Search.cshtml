@@ -1,0 +1,55 @@
+﻿@page
+@using CinemaLib;
+@model ASP.CORE2023._10._28.Pages.SeaarchModel
+@{
+	ViewData["Title"] = "Поисковая страница";
+}
+
+@{
+    if (Model.searhResult != null)
+    {
+        foreach(CinemaModel one in Model.searhResult)
+        {
+            <div class="card text-center mb-3">
+                <div class="card-header">
+                    <h4 class="card-title text-uppercase">@one.Name</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <p class="card-text"><b class="text-uppercase">Режисеры:</b> @string.Join(" ,", @one.Director) </p>
+
+                    <p class="card-text"><b class="text-uppercase">Жанр:</b> @string.Join(" ,", @one.Style) </p>
+
+                    <p class="card-text">@one.Info</p>
+                    <p class="card-text">
+                        <b class="text-uppercase">Сеансы:</b>
+                    </p>
+                    @{
+                        foreach (string s in @one.Seances)
+                        {
+                            <button type="button" class="btn btn-info px-3">@s</button>
+                        }
+                    }
+                </div>
+            </div>
+        }
+        <div class="text-center">
+            <a href="./" class="btn btn-primary">Назад</a>
+        </div>
+        
+    }
+
+}
+
+@* <script>
+    function searchClick() {
+        
+        ////searchFieldType.value --- тип поиска 
+        ////searchField.value ---- поле поиска
+        ///window.alert();
+
+        location.href = "/Search?t=" + searchFieldType.value + "?f=" + searchField.value;
+                
+    }
+
+</script> *@

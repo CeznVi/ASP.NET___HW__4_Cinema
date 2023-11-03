@@ -5,54 +5,6 @@
     ViewData["Title"] = "Cinema Details";
 }
 
-
-@* <div class="text-center">
-    <h1 class="display-4">Кіно</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Назва
-                </th>
-                <th>
-                    Подробиці
-                </th>
-                <th>Сеанси</th>
-            </tr>
-        </thead>
-
-        @{
-            if (Model.data != null)
-            {
-                <tr>
-                    <td>
-                        @Model.data.name
-                    </td>
-                    <td>
-                        @Model.data.info
-                    </td>
-                    <td>
-                        @{
-                            string s = "";
-                            foreach (string se in Model.data.seances)
-                                s += se + ",";
-                        }
-                        @s
-                    </td>
-                </tr>
-            }
-            else
-            {
-                <tr><td colspan="3">помилка даних</td></tr>
-            }
-        
-        }
-    </table>
-    <button onclick="back()">Назад</button>
-</div>
- *@
-
-
 @{
     if (Model.data != null)
     {
@@ -94,10 +46,6 @@
         <a href="./" class="btn btn-primary">Назад</a>
     }
 }
-
-
-
-
 
 <script>
     function back() {

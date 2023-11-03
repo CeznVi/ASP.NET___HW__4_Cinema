@@ -1,4 +1,6 @@
-﻿namespace CinemaLib
+﻿using System.Collections;
+
+namespace CinemaLib
 {
     [Serializable]
     public class CinemaModel
@@ -23,6 +25,7 @@
         /// Список сеансов
         /// </summary>
         public List<string> Seances { get; set; }
+        
 
     }
 }
