@@ -1,5 +1,6 @@
 ﻿@page
 @using CinemaLib;
+@using System.Text.Json;
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -10,8 +11,8 @@
     <table class="table table-hover">
         <thead>
             <tr>
-            <th class="minWeigth380px">Название</th>
-            <th class="minWeigth280px">Сеансы</th>
+            <th >Название</th>
+            <th >Сеансы</th>
             <th></th>
             </tr>
         </thead>
@@ -22,23 +23,31 @@
             {
                         <tr>
                             <td>
-                                @i.name
+                                @i.Name
                             </td>
                             <td>
                         @{
-                            string s = string.Join(", ", i.seances);
+                            string s = string.Join(", ", i.Seances);
                             @s
                         }
                             </td>
                             <td><button name="pos" value="@index" class="btn btn-info" onclick="details(this);false;">Подробнее</button></td>
 
-                        </tr>
-                index++;
+                    </tr>
+                    index++;
+                }
             }
-        }
         </tbody>
     </table>
 </div>
+
+@{
+    Model.data.Save();
+
+    
+   
+}
+
 
 <script>
     function details(item) {

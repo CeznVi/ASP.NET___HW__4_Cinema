@@ -61,13 +61,13 @@
                 Информация о фильме
             </div>
             <div class="card-body">
-                <h4 class="card-title text-uppercase">@Model.data.name</h4>
+                <h4 class="card-title text-uppercase">@Model.data.Name</h4>
 
-                <p class="card-text"><b class="text-uppercase">Режисеры:</b> @string.Join(" ,", Model.data.director) </p>
+                <p class="card-text"><b class="text-uppercase">Режисеры:</b> @string.Join(" ,", Model.data.Director) </p>
 
-                <p class="card-text"><b class="text-uppercase">Жанр:</b> @string.Join(" ,", Model.data.style) </p>
+                <p class="card-text"><b class="text-uppercase">Жанр:</b> @string.Join(" ,", Model.data.Style) </p>
 
-                <p class="card-text">@Model.data.info</p>
+                <p class="card-text">@Model.data.Info</p>
                 <p class="card-text">
                     <b class="text-uppercase">Сеансы:</b>
                 </p>
@@ -75,7 +75,7 @@
 
                 @{
 
-                    foreach(string s in Model.data.seances)
+                    foreach(string s in Model.data.Seances)
                     {
                         <button type="button" class="btn btn-info px-3">@s</button>
                     }

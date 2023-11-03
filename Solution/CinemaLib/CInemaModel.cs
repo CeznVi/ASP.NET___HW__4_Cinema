@@ -1,26 +1,28 @@
 ﻿namespace CinemaLib
 {
+    [Serializable]
     public class CinemaModel
     {
         /// <summary>
         /// Название фильма
         /// </summary>
-        public string name ="";
+        public string Name { get; set; }
         /// <summary>
         /// Режисеры
         /// </summary>
-        public List<string> director = new List<string>();
+        public List<string> Director { get; set; }
         /// <summary>
         /// Жанр
         /// </summary>
-        public List<string> style = new List<string>();
+        public List<string> Style { get; set; }
         /// <summary>
         /// Описание
         /// </summary>
-        public string info = "";
+        public string Info { get; set; }
         /// <summary>
         /// Список сеансов
         /// </summary>
-        public List<string> seances=new List<string>();
+        public List<string> Seances { get; set; }
+
     }
 }
