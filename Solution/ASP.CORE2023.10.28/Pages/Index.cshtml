@@ -1,0 +1,51 @@
+﻿@page
+@using CinemaLib;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Кинотеатр</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th class="minWeigth380px">Название</th>
+            <th class="minWeigth280px">Сеансы</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            int index = 0;
+            foreach (CinemaModel i in Model.data.data)
+            {
+                        <tr>
+                            <td>
+                                @i.name
+                            </td>
+                            <td>
+                        @{
+                            string s = string.Join(", ", i.seances);
+                            @s
+                        }
+                            </td>
+                            <td><button name="pos" value="@index" class="btn btn-info" onclick="details(this);false;">Подробнее</button></td>
+
+                        </tr>
+                index++;
+            }
+        }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function details(item) {
+        location.href = "/Details?pos=" + item.value;
+    }
+</script>
+
+
+
+

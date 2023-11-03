@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <BaseOutputPath>C:\step\ASP.CORE2023.10.28\ASP.CORE2023.10.28\bin</BaseOutputPath>
+  </PropertyGroup>
+
+</Project>

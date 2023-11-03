@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Department
+
+
+@{
+    <ol>
+    @foreach(Person p in @Model.stuff)
+        {
+            <li>@p.Surname,@p.Post</li>
+        }
+    </ol>
+    <h2>Boss @Model.Boss</h2>
+}
+
+
+@await Html.PartialAsync("Who",@Model.Boss)

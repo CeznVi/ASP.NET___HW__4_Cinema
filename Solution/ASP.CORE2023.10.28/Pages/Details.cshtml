@@ -1,0 +1,106 @@
+﻿@page
+@using CinemaLib;
+@model ASP.CORE2023._10._28.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Cinema Details";
+}
+
+
+@* <div class="text-center">
+    <h1 class="display-4">Кіно</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Назва
+                </th>
+                <th>
+                    Подробиці
+                </th>
+                <th>Сеанси</th>
+            </tr>
+        </thead>
+
+        @{
+            if (Model.data != null)
+            {
+                <tr>
+                    <td>
+                        @Model.data.name
+                    </td>
+                    <td>
+                        @Model.data.info
+                    </td>
+                    <td>
+                        @{
+                            string s = "";
+                            foreach (string se in Model.data.seances)
+                                s += se + ",";
+                        }
+                        @s
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr><td colspan="3">помилка даних</td></tr>
+            }
+        
+        }
+    </table>
+    <button onclick="back()">Назад</button>
+</div>
+ *@
+
+
+@{
+    if (Model.data != null)
+    {
+        <div class="card text-center">
+            <div class="card-header">
+                Информация о фильме
+            </div>
+            <div class="card-body">
+                <h4 class="card-title text-uppercase">@Model.data.name</h4>
+
+                <p class="card-text"><b class="text-uppercase">Режисеры:</b> @string.Join(" ,", Model.data.director) </p>
+
+                <p class="card-text"><b class="text-uppercase">Жанр:</b> @string.Join(" ,", Model.data.style) </p>
+
+                <p class="card-text">@Model.data.info</p>
+                <p class="card-text">
+                    <b class="text-uppercase">Сеансы:</b>
+                </p>
+
+
+                @{
+
+                    foreach(string s in Model.data.seances)
+                    {
+                        <button type="button" class="btn btn-info px-3">@s</button>
+                    }
+                }
+
+                
+            </div>
+            <div class="card-footer text-muted">
+                <a href="./" class="btn btn-primary">Назад</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h3>Неверные данные</h3>
+        <a href="./" class="btn btn-primary">Назад</a>
+    }
+}
+
+
+
+
+
+<script>
+    function back() {
+        location.href = "./";
+    }
+</script>
