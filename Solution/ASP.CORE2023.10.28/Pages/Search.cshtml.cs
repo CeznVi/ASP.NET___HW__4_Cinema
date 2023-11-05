@@ -38,17 +38,6 @@ namespace ASP.CORE2023._10._28.Pages
 
             }
             
-            //searhResult = allCinema.data.FindAll((p) => p.Name == searchData);
-            // searhResult = allCinema.data;
-
-            //if(searchData != null) 
-            //{ 
-            //    if(typeSearh == "fName") 
-            //    {
-            //        searhResult = allCinema.data;
-            //    }
-
-            //}
         }
 
 

@@ -1,0 +1,108 @@
+﻿@page
+@using CinemaLib;
+@model ASP.CORE2023._10._28.Pages.Admin.DeletePanelModel
+@{
+	ViewData["Title"] = "Панель администора-Панель удаления";
+}
+
+<div class="card text-center">
+    <div class="card-body">
+        <h4 class="card-title text-uppercase">Панель удаления</h4>
+        <p class="card-text">Для удалеления <b>фильма</b> нажмите на нем соответствующую кнопку</p>
+        <p class="card-text">Для удалеления <b>сеанса</b> нажмите на кнопку сеанса</p>
+    </div>
+
+</div>
+
+@{
+        int index = 0;
+        foreach (CinemaModel one in Model.data.data)
+        {
+    <div class="card text-center mb-3">
+                              <div class="card-header">
+                                        <h4 class="card-title d-inline-block px-5">@one.Name</h4>
+                                    <button value="@index" type="button" class="btn btn-danger px-3"
+                                        data-bs-whatever="@Model.data.data[index].Name"
+                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        Удалить фильм
+                                    </button>
+                              </div>
+                                    <div class="card-body">
+                                      
+                                        <p class="card-text mb-1"><b class="text-uppercase">Режисеры:</b> @string.Join(" ,", @one.Director) </p>
+
+                                        <p class="card-text mb-1"><b class="text-uppercase">Жанр:</b> @string.Join(" ,", @one.Style) </p>
+
+                                        <p class="card-text mb-1 text-truncate">@one.Info</p>
+                                        <p class="card-text mb-1">
+                                            <b class="text-uppercase">Сеансы:</b>
+                                        </p>
+                                        @{
+                        foreach (string s in @one.Seances)
+                        {
+                                                    <button type="button" class="btn btn-danger px-3">@s</button>
+                        }
+                                        }
+
+
+                                </div>
+    </div>
+            index++;
+        }
+    <div class="text-center">
+                                <a href="./" class="btn btn-primary">Назад</a>
+    </div>
+}
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Подтвердите действие</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить? </p>
+                <p class="whoDelete" ></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" value="" class="btn btn-danger" onclick="deleteFilm(this);false;" data-bs-dismiss="modal">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal END-->
+
+
+
+<script>
+    var exampleModal = document.getElementById('staticBackdrop')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var recipient = button.getAttribute('data-bs-whatever')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        var modalBodyInput = exampleModal.querySelector('.modal-body .whoDelete');
+            modalBodyInput.innerHTML = recipient;
+        var modalButtonDeleteValue = exampleModal.querySelector('.modal-footer .btn-danger');
+            modalButtonDeleteValue.value = recipient;
+            modalButtonDeleteValue.href = recipient;
+
+    })
+
+    function deleteFilm(item) {
+        var x = new XMLHttpRequest();
+        x.open("GET", "/index", true);
+
+        //window.alert(item.value);
+
+    }
+
+</script>

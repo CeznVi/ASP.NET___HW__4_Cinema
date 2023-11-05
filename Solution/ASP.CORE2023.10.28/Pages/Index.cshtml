@@ -9,8 +9,6 @@
 <div class="text-center">
     <h1 class="display-4">Киносеансы</h1>
 
-    @*     ВЕРНУТЬ В СЕРЧ *@
-
     <div class="input-group mb-3">
         <label class="input-group-text" for="searchFieldType">Опции поиска</label>
         <select class="form-select" id="searchFieldType">
@@ -26,7 +24,7 @@
         <input id="searchField" type="text" class="form-control" placeholder="Например: Гарри Поттер" aria-label="Recipient's username" aria-describedby="button-addon2">
         <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="searchClick()">ПОИСК</button>
     </div>
-    @*     ВЕРНУТЬ В СЕРЧ *@
+
 
     <table class="table table-hover">
         <thead>
@@ -67,10 +65,6 @@
     }
 
     function searchClick() {
-
-        ////searchFieldType.value --- тип поиска
-        ////searchField.value ---- поле поиска
-        ///window.alert();
         if (searchField.value != null && searchField.value.length > 1) {
             location.href = "/Search?typeSearh=" + searchFieldType.value + "&searchData=" + searchField.value;
         }
